@@ -1,0 +1,20 @@
+python object_detection/model_main.py \
+--pipeline_config_path=lisa/experiments/training/faster_rcnn_lisa.config \
+--model_dir=lisa/experiments/training \
+--num_train_steps=50000 \
+--sample_1_of_n_eval_examples=1 \
+--alsologtostderr
+
+
+
+tensorboard --logdir lisa/experiments/training
+
+
+
+####Predict
+
+python predict.py \
+--model lisa/experiments/exported_model/frozen_inference_graph.pb \
+--labels lisa/records/classes.pbtxt \
+--image test_image/test1.png \
+--num-classes 3
